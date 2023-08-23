@@ -1,7 +1,11 @@
+import PageMain from './view/pageMain'
+import PageNav from './view/pageNav'
+
 function App() {
   return (
     <>
-      <div>123</div>
+      <PageNav></PageNav>
+      <PageMain></PageMain>
     </>
   )
 }
