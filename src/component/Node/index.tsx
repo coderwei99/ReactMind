@@ -28,7 +28,7 @@ export default function Node({ node, allNodeRefs, onLeft }: IProps) {
       draggable
     >
       <div className='bg-slate-600 border-solid border-black border-[2px] p-[15px] rounded-[10px]' >
-        <p>
+        <p className='min-w-[40px] text-center'>
           {node.text}
         </p>
       </div>
