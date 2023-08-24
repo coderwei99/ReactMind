@@ -19,6 +19,13 @@ export default function Node({ node, allNodeRefs, onLeft }: IProps) {
       allNodeRefs.delete(nodeRef)
     }
   }, [nodeRef])
+  const handleNodeClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    ;(e.target as HTMLDivElement).scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+      inline: 'center',
+    })
+  }
   return (
     <div
       id={node.id}
@@ -29,6 +36,7 @@ export default function Node({ node, allNodeRefs, onLeft }: IProps) {
       <div
         className='bg-slate-600 border-solid border-black border-[2px] p-[15px] rounded-[10px]'
         draggable={node.id !== 'node_root'}
+        onClick={handleNodeClick}
       >
         <p className='min-w-[40px] select-none'>
           {node.text}
