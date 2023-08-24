@@ -22,13 +22,15 @@ export default function Node({ node, allNodeRefs, onLeft }: IProps) {
   return (
     <div
       id={node.id}
-      className='w-auto h-auto max-w-[240px] break-words  p-[20px]'
+      className='w-auto h-auto max-w-[240px] break-words p-[20px]'
       ref={nodeRef}
       data-nodetype={onLeft ? NodePosition.LEFT : NodePosition.RIGHT}
-      draggable
     >
-      <div className='bg-slate-600 border-solid border-black border-[2px] p-[15px] rounded-[10px]' >
-        <p className='min-w-[40px] text-center'>
+      <div
+        className='bg-slate-600 border-solid border-black border-[2px] p-[15px] rounded-[10px]'
+        draggable={node.id !== 'node_root'}
+      >
+        <p className='min-w-[40px] select-none'>
           {node.text}
         </p>
       </div>

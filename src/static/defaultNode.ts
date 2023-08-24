@@ -8,7 +8,7 @@ export type defaultNodeType = NodeType[]
 
 export const defaultNode: defaultNodeType = [
   {
-    id: '1',
+    id: 'node_root',
     text: '主题',
     children: [
       {
