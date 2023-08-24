@@ -50,3 +50,15 @@ function drawBezier(ctx: CanvasRenderingContext2D, from_x: number, from_y: numbe
   ctx.moveTo(from_x, from_y)
   ctx.bezierCurveTo(from_x, to_y, 0.9 * to_x + 0.1 * from_x, to_y, to_x, to_y)
 }
+
+export function drawLineCanvas(canvasRef: React.RefObject<HTMLCanvasElement>, nodeTree: NodeType, map: idToNodeMapType) {
+  const ctx = canvasRef.current!.getContext('2d')!
+  // 先清空画布 然后重新绘制线段
+  ctx.clearRect(0, 0, canvasRef.current!.width, canvasRef.current!.height)
+  ctx.beginPath()
+  ctx.lineWidth = 2
+  ctx.strokeStyle = '#f3f'
+  drawLine(ctx, nodeTree, map)
+  ctx.stroke()
+  ctx.closePath()
+}

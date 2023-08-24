@@ -1,6 +1,7 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 import type { allNodeRefsType } from '@/utils/types'
-import { drawLine } from '@/utils/canvasHelp'
+import { drawLineCanvas } from '@/utils/canvasHelp'
 import type { NodeType } from '@/static'
 import { getElementStyle } from '@/utils/getElementStyle'
 
@@ -11,6 +12,17 @@ interface IProps {
 
 export default function DrawLine({ nodeTree, allNodeRefs }: IProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const [uuid, setUuid] = useState(uuidv4())
+  // 监听屏幕大小变化 重新绘制连线
+  const handleResize = () => {
+    setUuid(uuidv4())
+  }
+  useEffect(() => {
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
   useEffect(() => {
     // 创建 id与节点的映射关系 用于绘制连线
     const map = new Map(Array.from(allNodeRefs).map((ref) => {
@@ -25,14 +37,8 @@ export default function DrawLine({ nodeTree, allNodeRefs }: IProps) {
         ] as const,
       ]
     }))
-    const ctx = canvasRef.current!.getContext('2d')!
-    ctx.beginPath()
-    ctx.lineWidth = 2
-    ctx.strokeStyle = '#f3f'
-    drawLine(ctx, nodeTree, map)
-    ctx.stroke()
-    ctx.closePath()
-  }, [allNodeRefs])
+    drawLineCanvas(canvasRef, nodeTree, map)
+  }, [allNodeRefs, uuid])
   return (
     <>
       <canvas ref={canvasRef} className='absolute inset-0 z-[-1]' id="canvas" width="1000" height="1000"></canvas>
