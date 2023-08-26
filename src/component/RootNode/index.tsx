@@ -1,7 +1,6 @@
 import SubNode from '@/component/subNode/idnex'
 import Node from '@/component/Node'
 import type { NodeType } from '@/static'
-import { XMIND_WRAPPER_CLASS_NAME } from '@/static'
 import type { allNodeRefsType } from '@/utils/types'
 
 interface IProps {
@@ -13,7 +12,7 @@ export default function RootNode({ defaultNode, allNodeRefs }: IProps) {
   // 平均分成两份 一份在左侧 一份在右侧
   const harf = defaultNode.children.length >> 1
   return (
-    <div className={`${XMIND_WRAPPER_CLASS_NAME} flex items-center justify-center`}>
+    <div className={'flex items-center justify-center'}>
       {/* 左侧的节点 */}
       <div className=''>
         {defaultNode.children.slice(harf).map((node) => {
