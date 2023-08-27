@@ -51,6 +51,7 @@ function drawBezier(ctx: CanvasRenderingContext2D, from_x: number, from_y: numbe
   ctx.bezierCurveTo(from_x, to_y, 0.9 * to_x + 0.1 * from_x, to_y, to_x, to_y)
 }
 
+// 连接节点之间的线段
 export function drawLineCanvas(canvasRef: React.RefObject<HTMLCanvasElement>, nodeTree: NodeType, map: idToNodeMapType) {
   const ctx = canvasRef.current!.getContext('2d')!
   // 先清空画布 然后重新绘制线段
@@ -61,4 +62,25 @@ export function drawLineCanvas(canvasRef: React.RefObject<HTMLCanvasElement>, no
   drawLine(ctx, nodeTree, map)
   ctx.stroke()
   ctx.closePath()
+}
+
+// 根据父id拿到所有的儿子信息
+export function findChildrenOfParentId(parentId: string, nodeTree: NodeType): string[] {
+  let children: string[] = []
+  if (nodeTree.id === parentId) {
+    nodeTree.children.forEach((c) => {
+      children.push(c.id)
+    })
+  }
+  else {
+    nodeTree.children.forEach((child) => {
+      children = children.concat(findChildrenOfParentId(parentId, child))
+    })
+  }
+  return children
+}
+
+// 根据id从dom树中获取指定dom
+export function getDomById(id: string, allNodeRefs: Map<string, React.RefObject<HTMLDivElement>>) {
+  return allNodeRefs.get(id)!
 }

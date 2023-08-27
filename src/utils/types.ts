@@ -6,3 +6,11 @@ export type allNodeRefsType = Set<React.RefObject<HTMLDivElement>>
 // id与绘制的节点之间的映射关系: 通过id 我们可以拿到我们想要拿到的具有这个id的节点的位置信息 比如说left top nodetype(是左边的还是右边的)
 type nodePositionType = readonly [number, number, number, string]
 export type idToNodeMapType = Map<string, nodePositionType>
+
+// 操作节点的方法的类型
+export interface mindNodeActionType {
+  // todo 参数还不确定
+  moveNode: (id: string, targetId: string) => void
+}
+
+export type dragEventNameType = 'dragstart' | 'drag' | 'drop' | 'dragend' | 'dragenter' | 'dragleave' | 'dragover'
