@@ -7,15 +7,16 @@ interface IProps {
   nodePosition: 'left' | 'right'
   allNodeRefs: allNodeRefsType
   onLeft: boolean
+  parentId: string | number
 }
 
-export default function SubNode({ node, nodePosition, allNodeRefs, onLeft }: IProps) {
+export default function SubNode({ node, nodePosition, allNodeRefs, onLeft, parentId }: IProps) {
   return (
     <div className={`flex ${nodePosition === 'left' ? 'flex-row-reverse' : ''}`} >
-      <Node node={node} allNodeRefs={allNodeRefs} onLeft={onLeft} ></Node>
+      <Node node={node} allNodeRefs={allNodeRefs} onLeft={onLeft} parentId={parentId} ></Node>
       {
-        node.children.length > 0 && node.children.map((node) => {
-          return <SubNode node={node} nodePosition={nodePosition} allNodeRefs={allNodeRefs} onLeft={onLeft}></SubNode>
+        node.children.length > 0 && node.children.map((childrenNode) => {
+          return <SubNode node={childrenNode} nodePosition={nodePosition} allNodeRefs={allNodeRefs} onLeft={onLeft} parentId={node.id}></SubNode>
         })
       }
     </div >

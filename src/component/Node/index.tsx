@@ -6,9 +6,10 @@ interface IProps {
   node: NodeType
   allNodeRefs: allNodeRefsType
   onLeft: boolean
+  parentId: string | number
 }
 
-export default function Node({ node, allNodeRefs, onLeft }: IProps) {
+export default function Node({ node, allNodeRefs, onLeft, parentId }: IProps) {
   // 将所有渲染的node节点都保存起来 然后放到一个set里面,set主要是为了去重,避免用户多次拖拽同一个节点
   const nodeRef = useRef<HTMLDivElement | null>(null)
   useEffect(() => {
@@ -20,7 +21,7 @@ export default function Node({ node, allNodeRefs, onLeft }: IProps) {
     }
   }, [nodeRef])
   const handleNodeClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    ;(e.target as HTMLDivElement).scrollIntoView({
+    ; (e.target as HTMLDivElement).scrollIntoView({
       behavior: 'smooth',
       block: 'center',
       inline: 'center',
@@ -32,13 +33,17 @@ export default function Node({ node, allNodeRefs, onLeft }: IProps) {
       className='w-auto h-auto max-w-[240px] break-words p-[20px]'
       ref={nodeRef}
       data-nodetype={onLeft ? NodePosition.LEFT : NodePosition.RIGHT}
+      data-parentid={parentId}
     >
       <div
         className='bg-slate-600 border-solid border-black border-[2px] p-[15px] rounded-[10px]'
         draggable={node.id !== 'node_root'}
+        id={node.id}
+
         onClick={handleNodeClick}
+        data-parentid={parentId}
       >
-        <p className='min-w-[40px] select-none'>
+        <p id={node.id} className='min-w-[40px] select-none' data-parentid={parentId}>
           {node.text}
         </p>
       </div>

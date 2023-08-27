@@ -16,19 +16,19 @@ export default function RootNode({ defaultNode, allNodeRefs }: IProps) {
       {/* 左侧的节点 */}
       <div className=''>
         {defaultNode.children.slice(harf).map((node) => {
-          return <SubNode node={node} nodePosition='left' key={node.id} allNodeRefs={allNodeRefs} onLeft={true} />
+          return <SubNode node={node} nodePosition='left' key={node.id} allNodeRefs={allNodeRefs} onLeft={true} parentId={defaultNode.id}/>
         })}
       </div>
       {/* 主题 也就是最中间那个节点 */}
       <div className='flex items-center'>
         <div>
-          <Node node={defaultNode} allNodeRefs={allNodeRefs} onLeft={false}></Node>
+          <Node node={defaultNode} allNodeRefs={allNodeRefs} onLeft={false} parentId={defaultNode.id}></Node>
         </div>
       </div>
       {/* 右侧的节点 */}
       <div className=''>
         {defaultNode.children.slice(0, harf).map((node) => {
-          return <SubNode node={node} nodePosition='right' key={node.id} allNodeRefs={allNodeRefs} onLeft={false} />
+          return <SubNode node={node} nodePosition='right' key={node.id} allNodeRefs={allNodeRefs} onLeft={false} parentId={defaultNode.id} />
         })}
       </div>
     </div>
