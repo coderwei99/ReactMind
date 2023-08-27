@@ -1,33 +1,7 @@
 import type { NodeType } from '@/static'
 
-export const nodesReducerActionTypeEnum = {
-  MOVENODE: 'Move_Node',
-}
-
-export interface INodesActionType {
-  type: 'MOVE_NODE'
-  payload: {
-    id: string
-    targetId: string
-  }
-}
-export function nodesReducerAction(state: NodeType, action: INodesActionType): NodeType {
-  let _: never
-  switch (action.type) {
-    case 'MOVE_NODE': {
-      const { id, targetId } = action.payload
-      moveNodeFn(state, id, targetId)
-      return { ...state }
-    }
-    default:
-      // 走到这里说明有action.type没有被匹配到 我希望所有的type都会被穷举处理 别给action加了新的type却忘记处理这个type的逻辑 这里用never就可以抛出异常 没有处理type这里就提示错误
-      _ = action.type
-      return _
-  }
-}
-
 // 移动节点函数
-function moveNodeFn(nodeState: NodeType, id: string, targetId: string) {
+export function moveNodeFn(nodeState: NodeType, id: string, targetId: string) {
   // todo: happy path 遵循最小实现原则 先实现最简单的功能 手动排除一些影响我们实现最小功能的边界 后续再对这些边界情况进行兼容处理
   if (targetId === '1-3')
     return
@@ -38,7 +12,7 @@ function moveNodeFn(nodeState: NodeType, id: string, targetId: string) {
   return nodeState
 }
 
-function deleteNodeById(node: NodeType, targetId: string) {
+export function deleteNodeById(node: NodeType, targetId: string) {
   // 递归遍历树结构
   for (let i = 0; i < node.children.length; i++) {
     if (node.children[i].id === targetId) {
@@ -52,7 +26,7 @@ function deleteNodeById(node: NodeType, targetId: string) {
   }
 }
 
-function insertNodeById(nodes: NodeType, drapDom: NodeType, targetId: string) {
+export function insertNodeById(nodes: NodeType, drapDom: NodeType, targetId: string) {
   // 递归遍历树结构
   for (let i = 0; i < nodes.children.length; i++) {
     if (nodes.children[i].id === targetId) {

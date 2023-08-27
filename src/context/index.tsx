@@ -1,7 +1,7 @@
 import { createContext, useReducer } from 'react'
 
-import type { INodesActionType } from './reducer/nodes'
-import { nodesReducerAction } from './reducer/nodes'
+import type { INodesActionType } from './reducer/nodesReducer/nodes'
+import { nodesReducerAction } from './reducer/nodesReducer/nodes'
 import type { NodeType } from '@/static/defaultNode'
 import { defaultNode } from '@/static/defaultNode'
 
