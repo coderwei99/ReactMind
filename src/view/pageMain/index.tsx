@@ -1,12 +1,14 @@
+import { useContext } from 'react'
 import MainMapContainer from '../MainMapContainer'
-import { defaultNode } from '@/static'
+import { DefaultNodeContext } from '@/context'
 
 export default function index() {
-  // console.log('defaultNode', defaultNode)
+  const { nodes } = useContext(DefaultNodeContext)
+  const { nodesState } = nodes
   return (
     <div className='relative flex justify-center items-center h-full px-[30vw] py-[30vh]'>
       {/* 思维导图组件容器 */}
-      <MainMapContainer defaultNode={defaultNode[0]}></MainMapContainer>
+      <MainMapContainer defaultNode={nodesState}></MainMapContainer>
     </div>
   )
 }
