@@ -8,9 +8,10 @@ import { getElementStyle } from '@/utils/getElementStyle'
 interface IProps {
   allNodeRefs: allNodeRefsType
   nodeTree: NodeType
+  renderId: string
 }
 
-export default function DrawLine({ nodeTree, allNodeRefs }: IProps) {
+export default function DrawLine({ nodeTree, allNodeRefs, renderId }: IProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [uuid, setUuid] = useState(uuidv4())
   // 监听屏幕大小变化 重新绘制连线
@@ -38,7 +39,7 @@ export default function DrawLine({ nodeTree, allNodeRefs }: IProps) {
       ]
     }))
     drawLineCanvas(canvasRef, nodeTree, map)
-  }, [allNodeRefs, uuid])
+  }, [allNodeRefs, uuid, renderId])
   return (
     <>
       <canvas ref={canvasRef} className='absolute inset-0 z-[-1]' id="canvas" width="1000" height="1000"></canvas>
