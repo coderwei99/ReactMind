@@ -2,6 +2,9 @@ import type { NodeType } from '@/static'
 
 // 移动节点函数
 export function moveNodeFn(nodeState: NodeType, id: string, targetId: string) {
+  // 首先判断edge case 用户拖动一个节点 就在这个节点附近松开鼠标 那么我们什么都不做 不然用户会发现鼠标不接了
+  if (targetId === id)
+    return
   // todo: happy path 遵循最小实现原则 先实现最简单的功能 手动排除一些影响我们实现最小功能的边界 后续再对这些边界情况进行兼容处理
   if (targetId === '1-3')
     return
