@@ -1,3 +1,4 @@
+import { logChildrenId } from '@/devRuntimeHelp'
 import type { NodeType } from '@/static'
 
 // 移动节点函数
@@ -6,12 +7,13 @@ export function moveNodeFn(nodeState: NodeType, id: string, targetId: string) {
   if (targetId === id)
     return
   // todo: happy path 遵循最小实现原则 先实现最简单的功能 手动排除一些影响我们实现最小功能的边界 后续再对这些边界情况进行兼容处理
-  if (targetId === '1-3')
-    return
   // 先将这个元素删除
   const drapDom = deleteNodeById(nodeState, id)
+  logChildrenId(nodeState)
   // 然后再插入到目标元素的前面
   insertNodeById(nodeState, drapDom!, targetId)
+  logChildrenId(nodeState)
+
   return nodeState
 }
 
