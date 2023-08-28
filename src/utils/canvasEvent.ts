@@ -75,10 +75,12 @@ export function getCanvasEvent(
          * 1. 首先需要大于元素的offsetLeft 以及 offsetTop
          * 2. 找到这个目标节点 然后进行换位
          */
+          // todo: 这样子判断 还是有点问题 拖拽的节点放到最下面的时候 会出现问题
           if (mouseX > pos[0] && mouseX < pos.at(-2)! && mouseY > pos[1] && mouseY < pos.at(-1)!) {
             // 说明找到了目标节点
             target_dom_id = c_id
             // 移动节点
+            // console.log('drag_dom_id', drag_dom_id!, 'target_dom_id', target_dom_id!)
             moveNode(drag_dom_id!, target_dom_id!)
           }
         })
