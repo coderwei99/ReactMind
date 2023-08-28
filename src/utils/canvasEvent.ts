@@ -75,7 +75,7 @@ export function getCanvasEvent(
          * 1. 首先需要大于元素的offsetLeft 以及 offsetTop
          * 2. 找到这个目标节点 然后进行换位
          */
-          if (mouseX > pos[0] && mouseY > pos[1]) {
+          if (mouseX > pos[0] && mouseX < pos.at(-2)! && mouseY > pos[1] && mouseY < pos.at(-1)!) {
             // 说明找到了目标节点
             target_dom_id = c_id
             // 移动节点
