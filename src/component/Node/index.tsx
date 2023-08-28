@@ -39,11 +39,17 @@ export default function Node({ node, allNodeRefs, onLeft, parentId }: IProps) {
         className='bg-slate-600 border-solid border-black border-[2px] p-[15px] rounded-[10px]'
         draggable={node.id !== 'node_root'}
         id={node.id}
+        data-nodetype={onLeft ? NodePosition.LEFT : NodePosition.RIGHT}
 
         onClick={handleNodeClick}
         data-parentid={parentId}
       >
-        <p id={node.id} className='min-w-[40px] select-none' data-parentid={parentId}>
+        <p
+          id={node.id}
+          className='min-w-[40px] select-none'
+          data-parentid={parentId}
+          data-nodetype={onLeft ? NodePosition.LEFT : NodePosition.RIGHT}
+        >
           {node.text}
         </p>
       </div>
