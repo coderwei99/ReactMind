@@ -31,36 +31,36 @@ export const defaultNode: defaultNodeType = [
         text: 'children42children2children2children2children2children2children2children2 => 1-4',
         children: [],
       },
-      // {
-      //   id: '1-5',
-      //   text: 'children4',
-      //   children: [],
-      // },
-      // {
-      //   id: '1-6',
-      //   text: 'children4',
-      //   children: [],
-      // },
-      // {
-      //   id: '1-7',
-      //   text: 'children4',
-      //   children: [],
-      // },
-      // {
-      //   id: '1-8',
-      //   text: 'children4',
-      //   children: [],
-      // },
-      // {
-      //   id: '1-9',
-      //   text: 'children4',
-      //   children: [],
-      // },
-      // {
-      //   id: '1-10',
-      //   text: 'children4',
-      //   children: [],
-      // },
+      {
+        id: '1-5',
+        text: 'children1-5',
+        children: [],
+      },
+      {
+        id: '1-6',
+        text: 'children1-6',
+        children: [],
+      },
+      {
+        id: '1-7',
+        text: 'children1-7',
+        children: [],
+      },
+      {
+        id: '1-8',
+        text: 'children1-8',
+        children: [],
+      },
+      {
+        id: '1-9',
+        text: 'children1-9',
+        children: [],
+      },
+      {
+        id: '1-10',
+        text: 'children1-10',
+        children: [],
+      },
       // {
       //   id: '1-11',
       //   text: 'children4',
