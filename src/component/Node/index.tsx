@@ -7,9 +7,11 @@ interface IProps {
   allNodeRefs: allNodeRefsType
   onLeft: boolean
   parentId: string | number
+  showBorderId: string
+  setShowBorderId: (id: string) => void
 }
 
-export default function Node({ node, allNodeRefs, onLeft, parentId }: IProps) {
+export default function Node({ node, allNodeRefs, onLeft, parentId, showBorderId, setShowBorderId }: IProps) {
   // 将所有渲染的node节点都保存起来 然后放到一个set里面,set主要是为了去重,避免用户多次拖拽同一个节点
   const nodeRef = useRef<HTMLDivElement | null>(null)
   useEffect(() => {
@@ -20,13 +22,15 @@ export default function Node({ node, allNodeRefs, onLeft, parentId }: IProps) {
       allNodeRefs.delete(nodeRef)
     }
   }, [nodeRef])
-  const handleNodeClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleNodeClick = (e: React.MouseEvent<HTMLDivElement>, nodeId: string) => {
     ; (e.target as HTMLDivElement).scrollIntoView({
       behavior: 'smooth',
       block: 'center',
       inline: 'center',
     })
+    setShowBorderId(nodeId)
   }
+
   return (
     <div
       id={node.id}
@@ -34,14 +38,14 @@ export default function Node({ node, allNodeRefs, onLeft, parentId }: IProps) {
       ref={nodeRef}
       data-nodetype={onLeft ? NodePosition.LEFT : NodePosition.RIGHT}
       data-parentid={parentId}
+      onClick={e => handleNodeClick(e, node.id)}
     >
       <div
-        className='bg-slate-600 border-solid border-black border-[2px] p-[15px] rounded-[10px]'
+        className={'bg-slate-600 border-solid border-black border-[2px] p-[15px] rounded-[10px]'}
+        style={{ boxShadow: `${showBorderId === node.id ? '0 0 0 3px #ffffff, 0 0 0 6px red' : ''}` }}
         draggable={node.id !== 'node_root'}
         id={node.id}
         data-nodetype={onLeft ? NodePosition.LEFT : NodePosition.RIGHT}
-
-        onClick={handleNodeClick}
         data-parentid={parentId}
       >
         <p
