@@ -40,6 +40,6 @@
     "commit-msg": "node vertify-commit.js"
   },
   "lint-staged": {
-    "*.{js,ts,tsx}": "eslint --fix"
+    "*.{js,ts,tsx}": "eslint --cache --fix"
   }
 }
