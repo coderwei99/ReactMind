@@ -33,13 +33,9 @@ export function drawLine(ctx: CanvasRenderingContext2D, nodes: NodeType, nodesMa
         const [child_x_left, child_x_right, child_y, position] = childPosition
         if (position === NodePosition.LEFT)
           drawBezier(ctx, parent_x_left, parent_y, child_x_right, child_y)
-        // ctx.moveTo(parent_x_left, parent_y)
-        // ctx.bezierCurveTo(parent_x_left, child_y, 0.9 * child_x_right + 0.1 * parent_x_left, child_y, child_x_right, child_y)
 
         else
           drawBezier(ctx, parent_x_right, parent_y, child_x_left, child_y)
-        // ctx.moveTo(parent_x_right, parent_y)
-        // ctx.bezierCurveTo(parent_x_right, child_y, 0.9 * child_x_left + 0.1 * parent_x_right, child_y, child_x_left, child_y)
       }
       drawLine(ctx, child, nodesMap)
     })
