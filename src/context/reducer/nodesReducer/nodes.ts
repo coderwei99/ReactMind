@@ -1,4 +1,4 @@
-import { moveNodeFn } from './help'
+import { editNodeByIdFn, moveNodeFn } from './help'
 import type { NodeType } from '@/static'
 
 export const nodesReducerActionTypeEnum = {
@@ -6,10 +6,11 @@ export const nodesReducerActionTypeEnum = {
 }
 
 export interface INodesActionType {
-  type: 'MOVE_NODE'
+  type: 'MOVE_NODE' | 'EDIT_NODE'
   payload: {
     id: string
-    targetId: string
+    targetId?: string
+    newText?: string
   }
 }
 export function nodesReducerAction(state: NodeType, action: INodesActionType): NodeType {
@@ -17,7 +18,12 @@ export function nodesReducerAction(state: NodeType, action: INodesActionType): N
   switch (action.type) {
     case 'MOVE_NODE': {
       const { id, targetId } = action.payload
-      moveNodeFn(state, id, targetId)
+      moveNodeFn(state, id, targetId!)
+      return { ...state }
+    }
+    case 'EDIT_NODE': {
+      const { id, newText } = action.payload
+      editNodeByIdFn(state, id, newText!)
       return { ...state }
     }
     default:

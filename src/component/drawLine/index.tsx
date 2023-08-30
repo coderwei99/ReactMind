@@ -9,10 +9,11 @@ interface IProps {
   allNodeRefs: allNodeRefsType
   nodeTree: NodeType
   renderId: string
+  dragRenderId: string
   canvasContainerRef: React.RefObject<HTMLDivElement>
 }
 
-export default function DrawLine({ nodeTree, allNodeRefs, renderId, canvasContainerRef }: IProps) {
+export default function DrawLine({ nodeTree, allNodeRefs, renderId, dragRenderId, canvasContainerRef }: IProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [uuid, setUuid] = useState(uuidv4())
   // 监听屏幕大小变化 重新绘制连线
@@ -43,7 +44,7 @@ export default function DrawLine({ nodeTree, allNodeRefs, renderId, canvasContai
       ]
     }))
     drawLineCanvas(canvasRef, nodeTree, map)
-  }, [allNodeRefs, uuid, renderId])
+  }, [allNodeRefs, uuid, renderId, dragRenderId])
   return (
     <>
       <canvas ref={canvasRef} className='absolute inset-0 z-[-1]' id="canvas"></canvas>

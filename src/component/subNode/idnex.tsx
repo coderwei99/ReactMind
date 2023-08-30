@@ -10,15 +10,50 @@ interface IProps {
   parentId: string | number
   showBorderId: string
   setShowBorderId: (id: string) => void
+  editNodeId: string
+  setEditNodeId: (id: string) => void
+  reRenderLine: () => void
 }
 
-export default function SubNode({ node, nodePosition, allNodeRefs, onLeft, parentId, showBorderId, setShowBorderId }: IProps) {
+export default function SubNode({
+  node,
+  nodePosition,
+  allNodeRefs,
+  onLeft,
+  parentId,
+  showBorderId,
+  setShowBorderId,
+  editNodeId,
+  setEditNodeId,
+  reRenderLine,
+}: IProps) {
   return (
     <div className={`flex ${nodePosition === 'left' ? 'flex-row-reverse' : ''}`} >
-      <Node showBorderId={showBorderId} setShowBorderId={setShowBorderId} node={node} allNodeRefs={allNodeRefs} onLeft={onLeft} parentId={parentId} ></Node>
+      <Node
+        showBorderId={showBorderId}
+        setShowBorderId={setShowBorderId}
+        node={node}
+        allNodeRefs={allNodeRefs}
+        onLeft={onLeft}
+        parentId={parentId}
+        editNodeId={editNodeId}
+        setEditNodeId={setEditNodeId}
+        reRenderLine={reRenderLine}
+      ></Node>
       {
         node.children.length > 0 && node.children.map((childrenNode) => {
-          return <SubNode showBorderId={showBorderId} setShowBorderId={setShowBorderId} node={childrenNode} nodePosition={nodePosition} allNodeRefs={allNodeRefs} onLeft={onLeft} parentId={node.id}></SubNode>
+          return <SubNode
+            showBorderId={showBorderId}
+            setShowBorderId={setShowBorderId}
+            node={childrenNode}
+            nodePosition={nodePosition}
+            allNodeRefs={allNodeRefs}
+            onLeft={onLeft}
+            parentId={node.id}
+            editNodeId={editNodeId}
+            setEditNodeId={setEditNodeId}
+            reRenderLine={reRenderLine}
+          ></SubNode>
         })
       }
     </div >

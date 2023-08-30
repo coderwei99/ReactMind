@@ -47,3 +47,21 @@ export function insertNodeById(nodes: NodeType, drapDom: NodeType, targetId: str
   }
   return false // 表示未找到目标节点
 }
+
+// 根据id修改节点的text
+export function editNodeByIdFn(state: NodeType, id: string, newText: string) {
+  // 递归遍历树结构
+  for (let i = 0; i < state.children.length; i++) {
+    if (state.children[i].id === id) {
+      // 找到目标节点，从父节点的 children 数组中删除它 然后把这个元素返回出去 后续要把他插入到别的位置
+      state.children[i].text = newText
+      return true
+    }
+    else {
+      // 递归处理子节点
+      if (editNodeByIdFn(state.children[i], id, newText))
+        return true // 表示删除成功
+    }
+  }
+  return false // 表示未找到目标节点
+}
