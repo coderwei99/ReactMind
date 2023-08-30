@@ -56,11 +56,11 @@ export const defaultNode: defaultNodeType = [
         text: 'children1-9',
         children: [],
       },
-      {
-        id: '1-10',
-        text: 'children1-10',
-        children: [],
-      },
+      // {
+      //   id: '1-10',
+      //   text: 'children1-10',
+      //   children: [],
+      // },
       // {
       //   id: '1-11',
       //   text: 'children4',
