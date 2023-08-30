@@ -91,3 +91,8 @@ todo
 
 ## Q&A
 todo
+
+## 致谢
+[RMind](https://github.com/Mongkii/RMind)为本项目提供的思路和灵感
+
+[react-feather](https://github.com/feathericons/react-feather) 为本项目提供的精美图标
