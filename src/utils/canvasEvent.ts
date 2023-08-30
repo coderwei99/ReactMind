@@ -3,7 +3,7 @@ import type { allNodeRefsType, dragEventNameType, mindNodeActionType } from './t
 import type { NodeType } from '@/static'
 
 export function getCanvasEvent(
-  canvas: HTMLCanvasElement,
+  _canvas: HTMLCanvasElement,
   nodes: NodeType,
   allNodeRefs: allNodeRefsType,
   mindNodeActionHook: mindNodeActionType,
@@ -55,7 +55,7 @@ export function getCanvasEvent(
     // 拖动的过程中会一直触发
     {
       eventName: 'drag',
-      listenEvent: (e: DragEvent) => {
+      listenEvent: (_e: DragEvent) => {
         // console.log('fs', e.x, e.currentTarget.offsetTop)
       },
     },

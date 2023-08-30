@@ -2,11 +2,7 @@ import NavLeft from './cpns/navItem'
 import NavTitle from './cpns/navTitle'
 import { pageNavConfig } from '@/static'
 
-interface IProps {
-
-}
-
-export default function Template(props: IProps) {
+export default function Template() {
   const mid = pageNavConfig.length >> 1
   const navLeftConfig = pageNavConfig.slice(0, mid)
   const navRightConfig = pageNavConfig.slice(mid)
