@@ -7,7 +7,7 @@ export default function Template() {
   const navLeftConfig = pageNavConfig.slice(0, mid)
   const navRightConfig = pageNavConfig.slice(mid)
   return (
-    <div className='bg-blue-600 h-[48px] w-full flex justify-between'>
+    <div className='border-b border-b-zinc-300 h-[48px] w-full flex justify-between'>
       <NavLeft navLeftConfig={navLeftConfig} />
       <NavTitle />
       {/* <NavRight/> */}

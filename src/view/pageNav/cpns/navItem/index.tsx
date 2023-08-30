@@ -7,7 +7,7 @@ interface IProps {
 
 export default function NavLeft({ navLeftConfig }: IProps) {
   return (
-  <div className='flex justify-between flex-1'>
+  <div className='flex flex-1 justify-around'>
     {
       navLeftConfig.map(item => (
         <SubBox name={item.name} keyName = {item.keyName} key={item.name} >{item.icon}</SubBox>

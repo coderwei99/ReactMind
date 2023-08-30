@@ -55,7 +55,7 @@ export default function SubBox({ name, keyName, children }: IProps) {
   }
   return (
     <div
-      className="w-[40px] mx-[10px] text-[12px] text-white justify-center items-center flex  flex-col cursor-pointer"
+      className="w-[40px] mx-[10px] text-[12px] text-black justify-center items-center flex  flex-col cursor-pointer"
       onClick={() => handleNavClick(keyName)}
     >
       {contextHolder}
