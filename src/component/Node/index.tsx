@@ -27,7 +27,11 @@ export default function Node({
   setEditNodeId,
   reRenderLine,
 }: IProps) {
-  const textAreaRef = useRef<HTMLTextAreaElement>(null)
+  const textAreaRef = useRef<HTMLTextAreaElement & {
+    resizableTextArea: {
+      textArea: HTMLTextAreaElement
+    }
+  }>(null)
   // 将所有渲染的node节点都保存起来 然后放到一个set里面,set主要是为了去重,避免用户多次拖拽同一个节点
   const nodeRef = useRef<HTMLDivElement | null>(null)
   // 保存用户输入框输入的值 不需要用来更新界面
