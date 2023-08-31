@@ -65,3 +65,21 @@ export function editNodeByIdFn(state: NodeType, id: string, newText: string) {
   }
   return false // 表示未找到目标节点
 }
+
+// 根据id找到某个节点
+export function findNodeByIdFn(state: NodeType, id: string): NodeType | null {
+  // 递归遍历树结构
+  for (let i = 0; i < state.children.length; i++) {
+    if (state.children[i].id === id) {
+      // 找到目标节点，从父节点的 children 数组中删除它 然后把这个元素返回出去 后续要把他插入到别的位置
+      return state.children[i]
+    }
+    else {
+      // 递归处理子节点
+      const result = findNodeByIdFn(state.children[i], id)
+      if (result)
+        return result // 表示删除成功
+    }
+  }
+  return null // 表示未找到目标节点
+}
