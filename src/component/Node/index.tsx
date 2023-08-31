@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef } from 'react'
 import TextArea from 'antd/es/input/TextArea'
 import NodeMenu from '../NodeMenu'
-import { NodePosition } from '@/static'
+import { NodePosition, XMIND_WRAPPER_CLASS_NAME } from '@/static'
 import type { INodeMenuConfigType, NodeType } from '@/static'
 import type { allNodeRefsType } from '@/utils/types'
 import { DefaultNodeContext } from '@/context'
@@ -45,12 +45,24 @@ export default function Node({
   useEffect(() => {
     // 渲染的时候就将节点保存起来
     allNodeRefs.add(nodeRef)
+    // 获取外层容器 监听是否被点击 点击的话取消所有的状态(边框 or 修改状态)
+    const wrapper = document.getElementById(XMIND_WRAPPER_CLASS_NAME)
+    const handleWrapperClick = () => {
+      setShowBorderId('')
+    }
+    wrapper?.addEventListener('click', handleWrapperClick)
     return () => {
       // 删除的时候也要从set里面删除
       allNodeRefs.delete(nodeRef)
+      wrapper?.removeEventListener('click', handleWrapperClick)
     }
   }, [nodeRef])
+
+  // 节点的点击事件
   const handleNodeClick = (e: React.MouseEvent<HTMLDivElement>, nodeId: string) => {
+    // 如果编辑节点的id等于用户点击的节点的id 那就说明 用户在编辑某个节点 然后点击了他 这个时候不需要处理他的点击事件 他可能只是在切换光标的位置罢了
+    if (editNodeId === nodeId)
+      return
     ; (e.target as HTMLDivElement).scrollIntoView({
       behavior: 'smooth',
       block: 'center',
@@ -61,6 +73,7 @@ export default function Node({
 
   // 节点双击事件
   const handleDoubleClick = (nodeId: string) => {
+    setShowBorderId('')
     setEditNodeId(nodeId)
     // 让input自动聚焦
     setTimeout(() => {
