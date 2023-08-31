@@ -1,8 +1,11 @@
 import { useContext, useEffect, useRef } from 'react'
 import TextArea from 'antd/es/input/TextArea'
-import { NodePosition, type NodeType } from '@/static'
+import NodeMenu from '../NodeMenu'
+import { NodePosition } from '@/static'
+import type { INodeMenuConfigType, NodeType } from '@/static'
 import type { allNodeRefsType } from '@/utils/types'
 import { DefaultNodeContext } from '@/context'
+import { useNodeMenuClick } from '@/hooks/useNodeMenuClick'
 
 interface IProps {
   node: NodeType
@@ -27,6 +30,7 @@ export default function Node({
   setEditNodeId,
   reRenderLine,
 }: IProps) {
+  const menuHandles = useNodeMenuClick()
   const textAreaRef = useRef<HTMLTextAreaElement & {
     resizableTextArea: {
       textArea: HTMLTextAreaElement
@@ -100,6 +104,12 @@ export default function Node({
     handleEnterPress()
   }
 
+  // 鼠标右键事件
+  const handleContextMenu = (e: React.MouseEvent<HTMLDivElement>) => {
+    // 先阻止默认的右键行为 弹出浏览器菜单
+    e.preventDefault()
+  }
+
   useEffect(() => {
     if (textAreaRef.current) {
       const resizeObserver = new ResizeObserver(() => {
@@ -112,15 +122,25 @@ export default function Node({
       }
     }
   }, [editNodeId])
+
+  // 处理节点菜单的点击事件
+  const handleMenuItemClick = (keyName: INodeMenuConfigType['keyName']) => {
+    menuHandles[keyName]()
+  }
   return (
     <div
       id={node.id}
-      className='w-auto h-auto max-w-[240px] break-words p-[20px]'
+      className='w-auto h-auto max-w-[240px] break-words p-[20px] relative'
       ref={nodeRef}
       data-nodetype={onLeft ? NodePosition.LEFT : NodePosition.RIGHT}
       data-parentid={parentId}
       onClick={e => handleNodeClick(e, node.id)}
     >
+      <NodeMenu
+        showBorderId={showBorderId}
+        node={node}
+        handleMenuItemClick={handleMenuItemClick}
+      />
       <div
         className={'bg-slate-600 border-solid border-black border-[2px] p-[15px] rounded-[10px]'}
         style={{ boxShadow: `${showBorderId === node.id ? '0 0 0 3px #ffffff, 0 0 0 6px red' : ''}` }}
@@ -129,6 +149,7 @@ export default function Node({
         data-nodetype={onLeft ? NodePosition.LEFT : NodePosition.RIGHT}
         data-parentid={parentId}
         onDoubleClick={() => handleDoubleClick(node.id)}
+        onContextMenu={handleContextMenu}
       >
         {
           editNodeId === node.id
