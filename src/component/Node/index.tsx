@@ -143,7 +143,7 @@ export default function Node({
   return (
     <div
       id={node.id}
-      className='w-auto h-auto max-w-[240px] break-words p-[20px] relative'
+      className='w-auto h-auto max-w-[240px] break-words p-[35px] relative'
       ref={nodeRef}
       data-nodetype={onLeft ? NodePosition.LEFT : NodePosition.RIGHT}
       data-parentid={parentId}
