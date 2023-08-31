@@ -1,8 +1,10 @@
+import type { INodesActionType } from '@/context/reducer/nodesReducer/nodes'
+
 /* eslint-disable no-console */
-export function useNodeMenuClick() {
+export function useNodeMenuClick(nodesDispatch: React.Dispatch<INodesActionType>) {
   return {
-    addSubNode: () => {
-      // console.log('addSubNode')
+    addSubNode: (id: string) => {
+      console.log('addSubNode', id)
     },
     addBrotherNode: () => {
       console.log('addBrotherNode')
@@ -10,8 +12,9 @@ export function useNodeMenuClick() {
     deleteNode: () => {
       console.log('deleteNode')
     },
-    editNode: () => {
-      console.log('editNode')
+    editNode: (id: string, handleFunction: (nodeId: string) => void) => {
+      handleFunction(id)
+      console.log('editNode', id)
     },
     remark: () => {
       console.log('remark')

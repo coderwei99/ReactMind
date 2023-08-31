@@ -30,7 +30,8 @@ export default function Node({
   setEditNodeId,
   reRenderLine,
 }: IProps) {
-  const menuHandles = useNodeMenuClick()
+  const { nodes: { nodesDispatch } } = useContext(DefaultNodeContext)
+  const menuHandles = useNodeMenuClick(nodesDispatch)
   const textAreaRef = useRef<HTMLTextAreaElement & {
     resizableTextArea: {
       textArea: HTMLTextAreaElement
@@ -41,7 +42,6 @@ export default function Node({
   // 保存用户输入框输入的值 不需要用来更新界面
   let inpuValue = ''
 
-  const { nodes: { nodesDispatch } } = useContext(DefaultNodeContext)
   useEffect(() => {
     // 渲染的时候就将节点保存起来
     allNodeRefs.add(nodeRef)
@@ -125,7 +125,7 @@ export default function Node({
 
   // 处理节点菜单的点击事件
   const handleMenuItemClick = (keyName: INodeMenuConfigType['keyName']) => {
-    menuHandles[keyName]()
+    menuHandles[keyName](node.id, handleDoubleClick)
   }
   return (
     <div
