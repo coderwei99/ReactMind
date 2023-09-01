@@ -22,13 +22,15 @@ export default function NavTitle() {
       inputRef.current?.blur()
   }
   return (
-    <div className="w-[120px] text-center leading-[48px] select-none" onDoubleClick={handleTitleClick} >
+    <div className="w-[120px] text-center leading-[48px] select-none flex justify-center items-center"
+      onDoubleClick={handleTitleClick}
+    >
       <div ref={divRef}>{title}</div>
       <input
         ref={inputRef}
         type="text"
         value={title}
-        className="w-full h-[47px] text-center hidden focus:outline-none"
+        className="w-full h-[24px] text-center hidden focus:outline-none border-b border-b-fuchsia-700"
         onKeyDown={handleEnterPress}
         onChange={handleInputChange}
         onBlur={handleInputBlur}
