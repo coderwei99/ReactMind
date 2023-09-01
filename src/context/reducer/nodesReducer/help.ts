@@ -67,7 +67,7 @@ export function editNodeByIdFn(state: NodeType, id: string, newText: string) {
 }
 
 // 根据id找到某个节点
-export function findNodeByIdFn(state: NodeType, id: string): NodeType | null {
+export function findNodeByIdFn(state: NodeType, id: string) {
   // 递归遍历树结构
   for (let i = 0; i < state.children.length; i++) {
     if (state.children[i].id === id) {
@@ -76,10 +76,7 @@ export function findNodeByIdFn(state: NodeType, id: string): NodeType | null {
     }
     else {
       // 递归处理子节点
-      const result = findNodeByIdFn(state.children[i], id)
-      if (result)
-        return result // 表示删除成功
+      findNodeByIdFn(state.children[i], id)
     }
   }
-  return null // 表示未找到目标节点
 }
