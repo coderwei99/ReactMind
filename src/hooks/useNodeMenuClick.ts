@@ -4,6 +4,7 @@ import type { INodesActionType } from '@/context/reducer/nodesReducer/nodes'
 export function useNodeMenuClick(nodesDispatch: React.Dispatch<INodesActionType>) {
   return {
     addSubNode: (id: string) => {
+      nodesDispatch({ type: 'ADD_SUB_NODE', payload: { id } })
       console.log('addSubNode', id)
     },
     addBrotherNode: () => {

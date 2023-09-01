@@ -1,4 +1,5 @@
-import { editNodeByIdFn, moveNodeFn } from './help'
+import { v4 as uuidv4 } from 'uuid'
+import { editNodeByIdFn, findNodeByIdFn, moveNodeFn } from './help'
 import type { NodeType } from '@/static'
 
 export const nodesReducerActionTypeEnum = {
@@ -6,7 +7,7 @@ export const nodesReducerActionTypeEnum = {
 }
 
 export interface INodesActionType {
-  type: 'MOVE_NODE' | 'EDIT_NODE'
+  type: 'MOVE_NODE' | 'EDIT_NODE' | 'ADD_SUB_NODE'
   payload: {
     id: string
     targetId?: string
@@ -24,6 +25,17 @@ export function nodesReducerAction(state: NodeType, action: INodesActionType): N
     case 'EDIT_NODE': {
       const { id, newText } = action.payload
       editNodeByIdFn(state, id, newText!)
+      return { ...state }
+    }
+    case 'ADD_SUB_NODE': {
+      const { id } = action.payload
+      // 先找到当前的节点 然后给他的children push进去一个新的node即可 currentNode一定有值的 不然点击事件虚空触发?
+      const currentNode = findNodeByIdFn(state, id)!
+      currentNode.children.push({
+        id: `node-${uuidv4().split('-')[0]}`,
+        text: '新节点',
+        children: [],
+      })
       return { ...state }
     }
     default:
