@@ -43,6 +43,7 @@ export default function SubNode({
       {
         node.children.length > 0 && node.children.map((childrenNode) => {
           return <SubNode
+            key={childrenNode.id}
             showBorderId={showBorderId}
             setShowBorderId={setShowBorderId}
             node={childrenNode}
