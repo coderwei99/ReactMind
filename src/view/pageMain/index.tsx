@@ -7,7 +7,7 @@ export default function index() {
   const nodeContainerRef = useRef<HTMLDivElement>(null)
   const { nodesState } = nodes
   return (
-    <div className='p-[300px]' ref={nodeContainerRef}>
+    <div className='p-[300px] relative top-[48px]' ref={nodeContainerRef}>
       {/* 思维导图组件容器 */}
       <MainMapContainer nodeContainerRef={nodeContainerRef} defaultNode={nodesState}></MainMapContainer>
     </div>
