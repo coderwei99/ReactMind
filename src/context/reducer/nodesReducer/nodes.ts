@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid'
-import { editNodeByIdFn, findNodeByIdFn, moveNodeFn } from './help'
+import { editNodeByIdFn, findNodeByIdFn, moveNodeFn, removeNode } from './help'
 import type { NodeType } from '@/static'
 
 export const nodesReducerActionTypeEnum = {
@@ -7,7 +7,7 @@ export const nodesReducerActionTypeEnum = {
 }
 
 export interface INodesActionType {
-  type: 'MOVE_NODE' | 'EDIT_NODE' | 'ADD_SUB_NODE'
+  type: 'MOVE_NODE' | 'EDIT_NODE' | 'ADD_SUB_NODE' | 'ADD_BROTHER_NODE' | 'DELETE_NODE'
   payload: {
     id: string
     targetId?: string
@@ -36,6 +36,14 @@ export function nodesReducerAction(state: NodeType, action: INodesActionType): N
         text: '新节点',
         children: [],
       })
+      return { ...state }
+    }
+    case 'ADD_BROTHER_NODE': {
+      return { ...state }
+    }
+    case 'DELETE_NODE': {
+      const { id } = action.payload
+      removeNode(state, id)
       return { ...state }
     }
     default:

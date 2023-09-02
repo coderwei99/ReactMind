@@ -10,7 +10,8 @@ export function useNodeMenuClick(nodesDispatch: React.Dispatch<INodesActionType>
     addBrotherNode: () => {
       console.log('addBrotherNode')
     },
-    deleteNode: () => {
+    deleteNode: (id: string) => {
+      nodesDispatch({ type: 'DELETE_NODE', payload: { id } })
       console.log('deleteNode')
     },
     editNode: (id: string, handleFunction: (nodeId: string) => void) => {

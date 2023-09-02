@@ -80,3 +80,18 @@ export function findNodeByIdFn(state: NodeType, id: string): NodeType {
     }
   })!
 }
+
+// 根据id找到删除这个节点
+export function removeNode(state: NodeType, targetId: string) {
+  state.children.forEach((node, index) => {
+    if (node.id === targetId) {
+      // 找到目标节点，从父节点的 children 数组中删除它 然后把这个元素返回出去 后续要把他插入到别的位置
+      state.children.splice(index, 1)
+      return state
+    }
+    else {
+      // 递归处理子节点
+      removeNode(node, targetId)
+    }
+  })
+}
