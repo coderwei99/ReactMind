@@ -14,12 +14,30 @@ export const defaultNode: defaultNodeType = [
       {
         id: '1-1',
         text: 'children1=> 1-1',
-        children: [],
+        children: [
+          {
+            id: '2-1',
+            text: '201',
+            children: [
+              {
+                id: '3-1',
+                text: '3-1',
+                children: [],
+              },
+            ],
+          },
+          {
+            id: '2-2',
+            text: '202',
+            children: [],
+          },
+        ],
       },
       {
         id: '1-2',
         text: 'children2children2children2children2children2children2children2children2  => 1-2',
-        children: [],
+        children: [
+        ],
       },
       {
         id: '1-3',
@@ -31,31 +49,31 @@ export const defaultNode: defaultNodeType = [
         text: 'children42children2children2children2children2children2children2children2 => 1-4',
         children: [],
       },
-      {
-        id: '1-5',
-        text: 'children1-5',
-        children: [],
-      },
-      {
-        id: '1-6',
-        text: 'children1-6',
-        children: [],
-      },
-      {
-        id: '1-7',
-        text: 'children1-7',
-        children: [],
-      },
-      {
-        id: '1-8',
-        text: 'children1-8',
-        children: [],
-      },
-      {
-        id: '1-9',
-        text: 'children1-9',
-        children: [],
-      },
+      // {
+      //   id: '1-5',
+      //   text: 'children1-5',
+      //   children: [],
+      // },
+      // {
+      //   id: '1-6',
+      //   text: 'children1-6',
+      //   children: [],
+      // },
+      // {
+      //   id: '1-7',
+      //   text: 'children1-7',
+      //   children: [],
+      // },
+      // {
+      //   id: '1-8',
+      //   text: 'children1-8',
+      //   children: [],
+      // },
+      // {
+      //   id: '1-9',
+      //   text: 'children1-9',
+      //   children: [],
+      // },
       // {
       //   id: '1-10',
       //   text: 'children1-10',
