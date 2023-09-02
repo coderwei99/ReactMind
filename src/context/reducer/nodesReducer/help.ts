@@ -67,16 +67,16 @@ export function editNodeByIdFn(state: NodeType, id: string, newText: string) {
 }
 
 // 根据id找到某个节点
-export function findNodeByIdFn(state: NodeType, id: string) {
+export function findNodeByIdFn(state: NodeType, id: string): NodeType {
+  // 多叉树的遍历 寻找某个id
   // 递归遍历树结构
-  for (let i = 0; i < state.children.length; i++) {
-    if (state.children[i].id === id) {
-      // 找到目标节点，从父节点的 children 数组中删除它 然后把这个元素返回出去 后续要把他插入到别的位置
-      return state.children[i]
+  return state.children.find((node) => {
+    if (node.id === id) {
+      return node
     }
     else {
       // 递归处理子节点
-      findNodeByIdFn(state.children[i], id)
+      return findNodeByIdFn(node, id)
     }
-  }
+  })!
 }

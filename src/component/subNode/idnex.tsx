@@ -28,7 +28,7 @@ export default function SubNode({
   reRenderLine,
 }: IProps) {
   return (
-    <div className={`flex ${nodePosition === 'left' ? 'flex-row-reverse' : ''}`} >
+    <div className={`flex justify-center items-center ${nodePosition === 'left' ? 'flex-row-reverse' : ''}`} >
       <Node
         showBorderId={showBorderId}
         setShowBorderId={setShowBorderId}
@@ -40,23 +40,27 @@ export default function SubNode({
         setEditNodeId={setEditNodeId}
         reRenderLine={reRenderLine}
       ></Node>
-      {
-        node.children.length > 0 && node.children.map((childrenNode) => {
-          return <SubNode
-            key={childrenNode.id}
-            showBorderId={showBorderId}
-            setShowBorderId={setShowBorderId}
-            node={childrenNode}
-            nodePosition={nodePosition}
-            allNodeRefs={allNodeRefs}
-            onLeft={onLeft}
-            parentId={node.id}
-            editNodeId={editNodeId}
-            setEditNodeId={setEditNodeId}
-            reRenderLine={reRenderLine}
-          ></SubNode>
-        })
-      }
+      <div>
+        {
+          node.children.length > 0 && node.children.map((childrenNode) => {
+            return (
+              <SubNode
+              key={childrenNode.id}
+                showBorderId={showBorderId}
+                setShowBorderId={setShowBorderId}
+                node={childrenNode}
+                nodePosition={nodePosition}
+                allNodeRefs={allNodeRefs}
+                onLeft={onLeft}
+                parentId={node.id}
+                editNodeId={editNodeId}
+                setEditNodeId={setEditNodeId}
+                reRenderLine={reRenderLine}
+              ></SubNode>
+            )
+          })
+        }
+      </div>
     </div >
   )
 }
