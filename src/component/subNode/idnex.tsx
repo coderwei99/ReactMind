@@ -28,7 +28,7 @@ export default function SubNode({
   reRenderLine,
 }: IProps) {
   return (
-    <div className={`flex justify-center items-center ${nodePosition === 'left' ? 'flex-row-reverse' : ''}`} >
+    <div className={`flex justify-start items-center ${nodePosition === 'left' ? 'flex-row-reverse' : ''}`} >
       <Node
         showBorderId={showBorderId}
         setShowBorderId={setShowBorderId}
