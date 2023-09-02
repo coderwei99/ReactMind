@@ -67,18 +67,20 @@ export function editNodeByIdFn(state: NodeType, id: string, newText: string) {
 }
 
 // 根据id找到某个节点
-export function findNodeByIdFn(state: NodeType, id: string): NodeType {
-  // 多叉树的遍历 寻找某个id
+// 多叉树的遍历 寻找某个id
+export function findNodeByIdFn(state: NodeType, id: string) {
   // 递归遍历树结构
-  return state.children.find((node) => {
-    if (node.id === id) {
-      return node
+  if (state.id === id) {
+    return state
+  }
+  else {
+    for (const child of state.children) {
+      const foundNode: NodeType = findNodeByIdFn(child, id)!
+      if (foundNode)
+        return foundNode
     }
-    else {
-      // 递归处理子节点
-      return findNodeByIdFn(node, id)
-    }
-  })!
+    return null
+  }
 }
 
 // 根据id找到删除这个节点
