@@ -23,7 +23,7 @@ export default function DrawDashedCanvas({ nodeTree, allNodeRefs, canvasContaine
     canvasRef.current!.width = canvasContainerRef.current!.offsetWidth
     canvasRef.current!.height = canvasContainerRef.current!.offsetHeight
     // 这个canvas在加载出来的时候注册事件 监听通过e.target拿到具体拖拽的元素
-    const canvasEvent = getCanvasEvent(canvasRef.current!, nodeTree, allNodeRefs, mindNodeAction)
+    const canvasEvent = getCanvasEvent(canvasRef.current!, nodeTree, allNodeRefs, mindNodeAction, canvasContainerRef)
     canvasEvent.forEach((e) => {
       canvasContainerRef.current?.addEventListener(e.eventName, e.listenEvent)
     })

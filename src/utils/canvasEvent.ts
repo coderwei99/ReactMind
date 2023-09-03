@@ -7,6 +7,7 @@ export function getCanvasEvent(
   nodes: NodeType,
   allNodeRefs: allNodeRefsType,
   mindNodeActionHook: mindNodeActionType,
+  canvasContainerRef: React.RefObject<HTMLDivElement>,
 ): {
     eventName: dragEventNameType
     listenEvent: (e: DragEvent) => void
@@ -64,8 +65,8 @@ export function getCanvasEvent(
       eventName: 'drop',
       listenEvent: (e: DragEvent) => {
         const parentId = (e.target as HTMLDivElement).dataset.parentid!
-        const mouseX = e.x
-        const mouseY = e.y
+        const mouseX = e.x - canvasContainerRef.current!.offsetLeft
+        const mouseY = e.y - canvasContainerRef.current!.offsetTop
         // 根据这个父亲的id去nodes拿到 所有的子节点 我们目前是看亲子节点 就是不管子节点的子节点
         const children = findChildrenOfParentId(parentId, nodes)
         children.forEach((c_id) => {
