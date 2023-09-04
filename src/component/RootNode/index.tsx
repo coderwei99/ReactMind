@@ -31,10 +31,10 @@ export default function RootNode({ defaultNode, allNodeRefs, reRenderLine, nodeC
   })
 
   // 处理icon的点击事件
-  const handleIconClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleIconClick = (e: React.MouseEvent<HTMLDivElement>, nodeId: string) => {
     e.stopPropagation()
     // eslint-disable-next-line no-console
-    console.log('11')
+    console.log('11', nodeId)
   }
   return (
     <div className={'flex items-center justify-center'}>
@@ -54,12 +54,16 @@ export default function RootNode({ defaultNode, allNodeRefs, reRenderLine, nodeC
             setEditNodeId={setEditNodeId}
             reRenderLine={reRenderLine}
           >
-            <div
-              className='absolute top-1/2 transform -translate-y-1/2 bg-sky-500 rounded-[16px] left-[-17px]'
-              onClick={handleIconClick}
-            >
-              <Plus width='16px' height='16px' color='white' />
-            </div>
+            {
+              (node: NodeType) => (
+                <div
+                  className='absolute top-1/2 transform -translate-y-1/2 bg-sky-500 rounded-[16px] left-[-17px]'
+                  onClick={e => handleIconClick(e, node.id)}
+                >
+                  <Plus width='16px' height='16px' color='white' />
+                </div>
+              )
+            }
           </SubNode>
         })}
       </div>
@@ -79,29 +83,31 @@ export default function RootNode({ defaultNode, allNodeRefs, reRenderLine, nodeC
           >
             {
               defaultNode.children.length > 1
-                ? (<>
+                ? (node: NodeType) => (
+                  <>
+                    <div
+                      className='absolute top-1/2 transform -translate-y-1/2 bg-sky-500 rounded-[16px] left-[-17px]'
+                      onClick={e => handleIconClick(e, node.id)}
+                    >
+                      <Plus width='16px' height='16px' color='white' />
+                    </div>
+                    <div
+                      className='absolute top-1/2 transform -translate-y-1/2 bg-sky-500 rounded-[16px] right-[-17px]'
+                      onClick={e => handleIconClick(e, node.id)}
+                    >
+                      <Plus width='16px' height='16px' color='white' />
+                    </div>
+                  </>
+                  )
+                : (node: NodeType) => (
                   <div
                     className='absolute top-1/2 transform -translate-y-1/2 bg-sky-500 rounded-[16px] left-[-17px]'
-                    onClick={handleIconClick}
-                  >
-                    <Plus width='16px' height='16px' color='white' />
-                  </div>
-                  <div
-                    className='absolute top-1/2 transform -translate-y-1/2 bg-sky-500 rounded-[16px] right-[-17px]'
-                    onClick={handleIconClick}
-                  >
-                    <Plus width='16px' height='16px' color='white' />
-                  </div>
-                </>
-                  )
-                : (
-                  <div
-                    className='absolute top-1/2 transform -translate-y-1/2 bg-sky-500 rounded-[16px] left-[-17px]'
-                    onClick={handleIconClick}
+                    onClick={e => handleIconClick(e, node.id)}
                   >
                     <Plus width='16px' height='16px' color='white' />
                   </div>
                   )
+
             }
 
           </Node>
@@ -123,12 +129,16 @@ export default function RootNode({ defaultNode, allNodeRefs, reRenderLine, nodeC
             setEditNodeId={setEditNodeId}
             reRenderLine={reRenderLine}
           >
-            <div
-              className='absolute top-1/2 transform -translate-y-1/2 bg-sky-500 rounded-[16px] right-[-17px]'
-              onClick={handleIconClick}
-            >
-              <Plus width='16px' height='16px' color='white' />
-            </div>
+            {
+              (node: NodeType) => (
+                <div
+                  className='absolute top-1/2 transform -translate-y-1/2 bg-sky-500 rounded-[16px] right-[-17px]'
+                  onClick={e => handleIconClick(e, node.id)}
+                >
+                  <Plus width='16px' height='16px' color='white' />
+                </div>
+              )
+            }
           </SubNode>
         })}
       </div>

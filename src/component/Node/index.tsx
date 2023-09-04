@@ -17,7 +17,7 @@ interface IProps {
   editNodeId: string
   setEditNodeId: (id: string) => void
   reRenderLine: () => void
-  children: React.ReactNode
+  children: false | ((node: NodeType) => React.ReactNode)
 }
 
 export default function Node({
@@ -190,7 +190,7 @@ export default function Node({
               {node.text}
             </p>
         }
-        {children}
+        {children && children(node)}
       </div>
     </div>
   )

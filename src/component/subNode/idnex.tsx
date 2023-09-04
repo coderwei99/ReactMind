@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import Node from '../Node'
 import type { allNodeRefsType } from '@/utils/types'
 import type { NodeType } from '@/static'
@@ -13,7 +14,7 @@ interface IProps {
   editNodeId: string
   setEditNodeId: (id: string) => void
   reRenderLine: () => void
-  children: React.ReactNode
+  children: ((node: NodeType) => ReactNode)
 }
 
 export default function SubNode({
