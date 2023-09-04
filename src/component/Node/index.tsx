@@ -155,7 +155,7 @@ export default function Node({
         handleMenuItemClick={handleMenuItemClick}
       />
       <div
-        className={'bg-slate-600 border-solid border-black border-[2px] p-[15px] rounded-[10px]'}
+        className={'bg-slate-600 border-solid border-black border-[2px] min-w-[100px] min-h-[60px] rounded-[10px]'}
         style={{ boxShadow: `${showBorderId === node.id ? '0 0 0 3px #ffffff, 0 0 0 6px red' : ''}` }}
         draggable={node.id !== 'node_root'}
         id={node.id}
@@ -170,7 +170,7 @@ export default function Node({
               ref={textAreaRef}
               // ref={inputRef}
               defaultValue={node.text}
-              className="focus:outline-none"
+              className="focus:outline-none min-w-full min-h-full"
               bordered={false}
               autoSize
               onPressEnter={handleEnterPress}
@@ -180,7 +180,7 @@ export default function Node({
             />
             : <p
               id={node.id}
-              className='min-w-[40px] select-none'
+              className='min-w-full min-h-full select-none'
               data-parentid={parentId}
               data-nodetype={onLeft ? NodePosition.LEFT : NodePosition.RIGHT}
             >
