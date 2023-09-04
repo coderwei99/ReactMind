@@ -3,46 +3,46 @@ import type { NodeType } from '@/static'
 
 export function getCanvasEvent(
   _canvas: HTMLCanvasElement,
-  nodes: NodeType,
-  allNodeRefs: allNodeRefsType,
+  _nodes: NodeType,
+  _allNodeRefs: allNodeRefsType,
   mindNodeActionHook: mindNodeActionType,
-  canvasContainerRef: React.RefObject<HTMLDivElement>,
+  _canvasContainerRef: React.RefObject<HTMLDivElement>,
 ): {
     eventName: dragEventNameType
     listenEvent: (e: DragEvent) => void
   }[] {
   const { moveNode } = mindNodeActionHook
-  let domMapposition: Map<string, number[]> = new Map()
+  // let _domMapposition: Map<string, number[]> = new Map()
 
   // 保存目标dom的id 就是要插入的位置的下一个dom 后续我们将拖拽节点插入到这个dom前面即可
   let target_dom_id: string | null = null
   // 拖拽元素的id
   let drag_dom_id: string | null = null
   // 初始化一些后续触发拖拽方法所用到的数据
-  function initData(allNodeRefs: allNodeRefsType) {
-    // [id,[需要的位置数据]]
-    const map = new Map(
-      [...allNodeRefs].map((domRef) => {
-        const dom = domRef.current
-        const id: string = dom!.id
-        return [
-          id!,
-          [
-            dom!.offsetLeft,
-            dom!.offsetTop,
-            dom!.offsetWidth,
-            dom!.offsetHeight,
-            dom!.offsetLeft + dom!.offsetWidth,
-            dom!.offsetTop + dom!.offsetHeight,
-          ],
-        ]
-      }),
-    )
+  // function initData(allNodeRefs: allNodeRefsType) {
+  //   // [id,[需要的位置数据]]
+  //   const map = new Map(
+  //     [...allNodeRefs].map((domRef) => {
+  //       const dom = domRef.current
+  //       const id: string = dom!.id
+  //       return [
+  //         id!,
+  //         [
+  //           dom!.offsetLeft,
+  //           dom!.offsetTop,
+  //           dom!.offsetWidth,
+  //           dom!.offsetHeight,
+  //           dom!.offsetLeft + dom!.offsetWidth,
+  //           dom!.offsetTop + dom!.offsetHeight,
+  //         ],
+  //       ]
+  //     }),
+  //   )
 
-    return map
-  }
+  //   return map
+  // }
 
-  domMapposition = initData(allNodeRefs)
+  // _domMapposition = initData(allNodeRefs)
 
   return [
     // 开始拖动dom的一瞬间触发一次
