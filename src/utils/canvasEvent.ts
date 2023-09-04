@@ -1,4 +1,3 @@
-import { findChildrenOfParentId } from './canvasHelp'
 import type { allNodeRefsType, dragEventNameType, mindNodeActionType } from './types'
 import type { NodeType } from '@/static'
 
@@ -64,27 +63,9 @@ export function getCanvasEvent(
     {
       eventName: 'drop',
       listenEvent: (e: DragEvent) => {
-        const parentId = (e.target as HTMLDivElement).dataset.parentid!
-        const mouseX = e.x - canvasContainerRef.current!.offsetLeft
-        const mouseY = e.y - canvasContainerRef.current!.offsetTop
-        // 根据这个父亲的id去nodes拿到 所有的子节点 我们目前是看亲子节点 就是不管子节点的子节点
-        const children = findChildrenOfParentId(parentId, nodes)
-        children.forEach((c_id) => {
-          const pos = domMapposition.get(c_id as string)!
-          /**
-         * happy path
-         * 1. 首先需要大于元素的offsetLeft 以及 offsetTop
-         * 2. 找到这个目标节点 然后进行换位
-         */
-          // todo: 这样子判断 还是有点问题 拖拽的节点放到最下面的时候 会出现问题
-          if (mouseX > pos[0] && mouseX < pos.at(-2)! && mouseY > pos[1] && mouseY < pos.at(-1)!) {
-            // 说明找到了目标节点
-            target_dom_id = c_id
-            // 移动节点
-            // console.log('drag_dom_id', drag_dom_id!, 'target_dom_id', target_dom_id!)
-            moveNode(drag_dom_id!, target_dom_id!)
-          }
-        })
+        const target_id = (e.target as HTMLDivElement).id
+        target_dom_id = target_id
+        moveNode(drag_dom_id!, target_dom_id!)
       },
     },
     {
