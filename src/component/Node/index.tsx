@@ -143,7 +143,7 @@ export default function Node({
   return (
     <div
       id={node.id}
-      className='w-auto h-auto max-w-[240px] break-words p-[35px] relative'
+      className='w-auto h-auto max-w-[300px] break-words p-[35px] relative'
       ref={nodeRef}
       data-nodetype={onLeft ? NodePosition.LEFT : NodePosition.RIGHT}
       data-parentid={parentId}
@@ -155,7 +155,7 @@ export default function Node({
         handleMenuItemClick={handleMenuItemClick}
       />
       <div
-        className={'bg-slate-600 border-solid border-black border-[2px] min-w-[100px] min-h-[60px] rounded-[10px]'}
+        className={'bg-slate-600 border-solid border-black border-[2px] min-w-[100px] min-h-[60px] rounded-[10px] p-[8px]'}
         style={{ boxShadow: `${showBorderId === node.id ? '0 0 0 3px #ffffff, 0 0 0 6px red' : ''}` }}
         draggable={node.id !== 'node_root'}
         id={node.id}
