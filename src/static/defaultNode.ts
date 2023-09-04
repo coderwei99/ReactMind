@@ -35,7 +35,7 @@ export const defaultNode: defaultNodeType = [
       },
       {
         id: '1-2',
-        text: 'children2children2children2children2children2children2children2children2  => 1-2',
+        text: '我是id为1-2的节点',
         children: [
         ],
       },
@@ -46,24 +46,24 @@ export const defaultNode: defaultNodeType = [
       },
       {
         id: '1-4',
-        text: 'children42children2children2children2children2children2children2children2 => 1-4',
+        text: '我是id为1-4的节点',
         children: [],
       },
-      // {
-      //   id: '1-5',
-      //   text: 'children1-5',
-      //   children: [],
-      // },
-      // {
-      //   id: '1-6',
-      //   text: 'children1-6',
-      //   children: [],
-      // },
-      // {
-      //   id: '1-7',
-      //   text: 'children1-7',
-      //   children: [],
-      // },
+      {
+        id: '1-5',
+        text: 'children1-5',
+        children: [],
+      },
+      {
+        id: '1-6',
+        text: 'children1-6',
+        children: [],
+      },
+      {
+        id: '1-7',
+        text: 'children1-7',
+        children: [],
+      },
       // {
       //   id: '1-8',
       //   text: 'children1-8',
