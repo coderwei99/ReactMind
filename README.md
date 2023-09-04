@@ -24,11 +24,11 @@ ReactMind是一款基于`React18` + `Vite` + `Tailwindcss` + `TypeScript` 实现
 
 ## 在线体验
 
-线上地址：todo
+线上地址：https://react-mind.vercel.app
 
 ## 项目文档（WIP）
 
-线上地址： todo
+线上地址： https://github.com/coderwei99/ReactMind
 
 ## 实现功能
 
