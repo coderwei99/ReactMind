@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { Plus } from 'react-feather'
 import SubNode from '@/component/subNode/idnex'
 import Node from '@/component/Node'
 import type { NodeType } from '@/static'
@@ -24,9 +25,17 @@ export default function RootNode({ defaultNode, allNodeRefs, reRenderLine, nodeC
   const nodeleftBoxRef = useRef<HTMLDivElement>(null)
   const nodeCenterBoxRef = useRef<HTMLDivElement>(null)
   const nodeRightBoxRef = useRef<HTMLDivElement>(null)
+
   useEffect(() => {
     nodeContainerRef.current!.style.width = `${nodeleftBoxRef.current!.offsetWidth + nodeRightBoxRef.current!.offsetWidth + nodeCenterBoxRef.current!.offsetWidth + 600}px`
   })
+
+  // 处理icon的点击事件
+  const handleIconClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation()
+    // eslint-disable-next-line no-console
+    console.log('11')
+  }
   return (
     <div className={'flex items-center justify-center'}>
       {/* 左侧的节点 */}
@@ -44,7 +53,14 @@ export default function RootNode({ defaultNode, allNodeRefs, reRenderLine, nodeC
             editNodeId={editNodeId}
             setEditNodeId={setEditNodeId}
             reRenderLine={reRenderLine}
-          />
+          >
+            <div
+              className='absolute top-1/2 transform -translate-y-1/2 bg-sky-500 rounded-[16px] left-[-17px]'
+              onClick={handleIconClick}
+            >
+              <Plus width='16px' height='16px' color='white' />
+            </div>
+          </SubNode>
         })}
       </div>
       {/* 主题 也就是最中间那个节点 */}
@@ -60,7 +76,35 @@ export default function RootNode({ defaultNode, allNodeRefs, reRenderLine, nodeC
             onLeft={false}
             parentId={defaultNode.id}
             reRenderLine={reRenderLine}
-          ></Node>
+          >
+            {
+              defaultNode.children.length > 1
+                ? (<>
+                  <div
+                    className='absolute top-1/2 transform -translate-y-1/2 bg-sky-500 rounded-[16px] left-[-17px]'
+                    onClick={handleIconClick}
+                  >
+                    <Plus width='16px' height='16px' color='white' />
+                  </div>
+                  <div
+                    className='absolute top-1/2 transform -translate-y-1/2 bg-sky-500 rounded-[16px] right-[-17px]'
+                    onClick={handleIconClick}
+                  >
+                    <Plus width='16px' height='16px' color='white' />
+                  </div>
+                </>
+                  )
+                : (
+                  <div
+                    className='absolute top-1/2 transform -translate-y-1/2 bg-sky-500 rounded-[16px] left-[-17px]'
+                    onClick={handleIconClick}
+                  >
+                    <Plus width='16px' height='16px' color='white' />
+                  </div>
+                  )
+            }
+
+          </Node>
         </div>
       </div>
       {/* 右侧的节点 */}
@@ -78,7 +122,14 @@ export default function RootNode({ defaultNode, allNodeRefs, reRenderLine, nodeC
             editNodeId={editNodeId}
             setEditNodeId={setEditNodeId}
             reRenderLine={reRenderLine}
-          />
+          >
+            <div
+              className='absolute top-1/2 transform -translate-y-1/2 bg-sky-500 rounded-[16px] right-[-17px]'
+              onClick={handleIconClick}
+            >
+              <Plus width='16px' height='16px' color='white' />
+            </div>
+          </SubNode>
         })}
       </div>
     </div>

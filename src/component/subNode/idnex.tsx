@@ -13,6 +13,7 @@ interface IProps {
   editNodeId: string
   setEditNodeId: (id: string) => void
   reRenderLine: () => void
+  children: React.ReactNode
 }
 
 export default function SubNode({
@@ -26,6 +27,7 @@ export default function SubNode({
   editNodeId,
   setEditNodeId,
   reRenderLine,
+  children,
 }: IProps) {
   return (
     <div className={`flex justify-start items-center ${nodePosition === 'left' ? 'flex-row-reverse' : ''}`} >
@@ -39,6 +41,7 @@ export default function SubNode({
         editNodeId={editNodeId}
         setEditNodeId={setEditNodeId}
         reRenderLine={reRenderLine}
+        children={node.children.length > 0 && children}
       ></Node>
       <div>
         {
@@ -56,6 +59,7 @@ export default function SubNode({
                 editNodeId={editNodeId}
                 setEditNodeId={setEditNodeId}
                 reRenderLine={reRenderLine}
+                children={children}
               ></SubNode>
             )
           })
