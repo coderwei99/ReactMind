@@ -1,4 +1,4 @@
-import { message } from 'antd'
+import { App } from 'antd'
 import type { IPageNavConfigType } from '@/static'
 
 interface IProps {
@@ -11,43 +11,43 @@ export default function SubBox({ name, keyName, children }: IProps) {
   // q: contextHolder有什么作用?
   // a:
 
-  const [messageApi, contextHolder] = message.useMessage()
+  const { message } = App.useApp()
   const clickHandlers = {
     export: () => {
-      messageApi.warning('暂未开发!')
+      message.warning('暂未开发!')
     },
     import: () => {
-      messageApi.warning('暂未开发!')
+      message.warning('暂未开发!')
     },
     create: () => {
-      messageApi.warning('暂未开发!')
+      message.warning('暂未开发!')
     },
     open: () => {
-      messageApi.warning('暂未开发!')
+      message.warning('暂未开发!')
     },
     theme: () => {
-      messageApi.warning('暂未开发!')
+      message.warning('暂未开发!')
     },
     zoomIn: () => {
-      messageApi.warning('暂未开发!')
+      message.warning('暂未开发!')
     },
     zoomOut: () => {
-      messageApi.warning('暂未开发!')
+      message.warning('暂未开发!')
     },
     reset: () => {
-      messageApi.warning('暂未开发!')
+      message.warning('暂未开发!')
     },
     up: () => {
-      messageApi.warning('暂未开发!')
+      message.warning('暂未开发!')
     },
     down: () => {
-      messageApi.warning('暂未开发!')
+      message.warning('暂未开发!')
     },
     left: () => {
-      messageApi.warning('暂未开发!')
+      message.warning('暂未开发!')
     },
     right: () => {
-      messageApi.warning('暂未开发!')
+      message.warning('暂未开发!')
     },
   }
   const handleNavClick = (keyName: keyof typeof clickHandlers) => {
@@ -58,7 +58,6 @@ export default function SubBox({ name, keyName, children }: IProps) {
       className="w-[40px] mx-[10px] text-[12px] text-black justify-center items-center flex  flex-col cursor-pointer"
       onClick={() => handleNavClick(keyName)}
     >
-      {contextHolder}
       {children}
       {name}
     </div>
