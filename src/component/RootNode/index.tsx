@@ -42,6 +42,10 @@ export default function RootNode({ defaultNode, allNodeRefs, reRenderLine, nodeC
       payload: { id: nodeId },
     })
   }
+
+  const hiddenIcon = (node: NodeType) => {
+    return node.showChildren ? <Minus width='16px' height='16px' color='white'/> : <Plus width='16px' height='16px' color='white' />
+  }
   return (
     <div className={'flex items-center justify-center'}>
       {/* 左侧的节点 */}
@@ -66,7 +70,7 @@ export default function RootNode({ defaultNode, allNodeRefs, reRenderLine, nodeC
                   className='absolute top-1/2 transform -translate-y-1/2 bg-sky-500 rounded-[16px] left-[-17px]'
                   onClick={e => handleIconClick(e, node.id)}
                 >
-                  {node.showChildren ? <Plus width='16px' height='16px' color='white' /> : <Minus width='16px' height='16px' color='white'/>}
+                  {hiddenIcon(node)}
                 </div>
               )
             }
@@ -95,13 +99,13 @@ export default function RootNode({ defaultNode, allNodeRefs, reRenderLine, nodeC
                       className='absolute top-1/2 transform -translate-y-1/2 bg-sky-500 rounded-[16px] left-[-17px]'
                       onClick={e => handleIconClick(e, node.id)}
                     >
-                      {node.showChildren ? <Plus width='16px' height='16px' color='white' /> : <Minus width='16px' height='16px' color='white'/>}
+                      {hiddenIcon(node)}
                     </div>
                     <div
                       className='absolute top-1/2 transform -translate-y-1/2 bg-sky-500 rounded-[16px] right-[-17px]'
                       onClick={e => handleIconClick(e, node.id)}
                     >
-                      {node.showChildren ? <Plus width='16px' height='16px' color='white' /> : <Minus width='16px' height='16px' color='white'/>}
+                      {hiddenIcon(node)}
                     </div>
                   </>
                   )
@@ -110,7 +114,7 @@ export default function RootNode({ defaultNode, allNodeRefs, reRenderLine, nodeC
                     className='absolute top-1/2 transform -translate-y-1/2 bg-sky-500 rounded-[16px] left-[-17px]'
                     onClick={e => handleIconClick(e, node.id)}
                   >
-                      {node.showChildren ? <Plus width='16px' height='16px' color='white' /> : <Minus width='16px' height='16px' color='white'/>}
+                    {hiddenIcon(node)}
                   </div>
                   )
 
@@ -141,7 +145,7 @@ export default function RootNode({ defaultNode, allNodeRefs, reRenderLine, nodeC
                   className='absolute top-1/2 transform -translate-y-1/2 bg-sky-500 rounded-[16px] right-[-17px]'
                   onClick={e => handleIconClick(e, node.id)}
                 >
-                  {node.showChildren ? <Plus width='16px' height='16px' color='white' /> : <Minus width='16px' height='16px' color='white'/>}
+                  {hiddenIcon(node)}
                 </div>
               )
             }
