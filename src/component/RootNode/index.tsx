@@ -44,7 +44,7 @@ export default function RootNode({ defaultNode, allNodeRefs, reRenderLine, nodeC
   }
 
   const hiddenIcon = (node: NodeType) => {
-    return node.showChildren ? <Minus width='16px' height='16px' color='white'/> : <Plus width='16px' height='16px' color='white' />
+    return node.showChildren ? <Minus width='16px' height='16px' color='white' /> : <Plus width='16px' height='16px' color='white' />
   }
   return (
     <div className={'flex items-center justify-center'}>
@@ -90,8 +90,10 @@ export default function RootNode({ defaultNode, allNodeRefs, reRenderLine, nodeC
             onLeft={false}
             parentId={defaultNode.id}
             reRenderLine={reRenderLine}
-          >
-            {
+          />
+
+          {/* todo: 这个位置应该是需要塞在Node组件里面作为children  但是目前没有实现根节点的隐藏和显示节点 后续处理 */}
+          {/* {
               defaultNode.children.length > 1
                 ? (node: NodeType) => (
                   <>
@@ -118,9 +120,7 @@ export default function RootNode({ defaultNode, allNodeRefs, reRenderLine, nodeC
                   </div>
                   )
 
-            }
-
-          </Node>
+            } */}
         </div>
       </div>
       {/* 右侧的节点 */}

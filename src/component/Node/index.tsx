@@ -17,7 +17,7 @@ interface IProps {
   editNodeId: string
   setEditNodeId: (id: string) => void
   reRenderLine: () => void
-  children: false | ((node: NodeType) => React.ReactNode)
+  children?: false | ((node: NodeType) => React.ReactNode)
 }
 
 export default function Node({
