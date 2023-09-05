@@ -1,16 +1,16 @@
-import { useEffect, useRef, useState } from 'react'
-import { Plus } from 'react-feather'
+import { useContext, useEffect, useRef, useState } from 'react'
+import { Minus, Plus } from 'react-feather'
 import SubNode from '@/component/subNode/idnex'
 import Node from '@/component/Node'
 import type { NodeType } from '@/static'
 import type { allNodeRefsType } from '@/utils/types'
+import { DefaultNodeContext } from '@/context'
 
 interface IProps {
   defaultNode: NodeType
   allNodeRefs: allNodeRefsType
   reRenderLine: () => void
   nodeContainerRef: React.RefObject<HTMLDivElement>
-
 }
 
 export default function RootNode({ defaultNode, allNodeRefs, reRenderLine, nodeContainerRef }: IProps) {
@@ -18,6 +18,8 @@ export default function RootNode({ defaultNode, allNodeRefs, reRenderLine, nodeC
   const [showBorderId, setShowBorderId] = useState('')
   // 记录给那个node设置修改状态
   const [editNodeId, setEditNodeId] = useState('')
+
+  const { nodes: { nodesDispatch } } = useContext(DefaultNodeContext)
 
   // 平均分成两份 一份在左侧 一份在右侧
   const harf = defaultNode.children.length >> 1
@@ -35,6 +37,10 @@ export default function RootNode({ defaultNode, allNodeRefs, reRenderLine, nodeC
     e.stopPropagation()
     // eslint-disable-next-line no-console
     console.log('11', nodeId)
+    nodesDispatch({
+      type: 'HIDDEN_CHILDREN',
+      payload: { id: nodeId },
+    })
   }
   return (
     <div className={'flex items-center justify-center'}>
@@ -60,7 +66,7 @@ export default function RootNode({ defaultNode, allNodeRefs, reRenderLine, nodeC
                   className='absolute top-1/2 transform -translate-y-1/2 bg-sky-500 rounded-[16px] left-[-17px]'
                   onClick={e => handleIconClick(e, node.id)}
                 >
-                  <Plus width='16px' height='16px' color='white' />
+                  {node.showChildren ? <Plus width='16px' height='16px' color='white' /> : <Minus width='16px' height='16px' color='white'/>}
                 </div>
               )
             }
@@ -89,13 +95,13 @@ export default function RootNode({ defaultNode, allNodeRefs, reRenderLine, nodeC
                       className='absolute top-1/2 transform -translate-y-1/2 bg-sky-500 rounded-[16px] left-[-17px]'
                       onClick={e => handleIconClick(e, node.id)}
                     >
-                      <Plus width='16px' height='16px' color='white' />
+                      {node.showChildren ? <Plus width='16px' height='16px' color='white' /> : <Minus width='16px' height='16px' color='white'/>}
                     </div>
                     <div
                       className='absolute top-1/2 transform -translate-y-1/2 bg-sky-500 rounded-[16px] right-[-17px]'
                       onClick={e => handleIconClick(e, node.id)}
                     >
-                      <Plus width='16px' height='16px' color='white' />
+                      {node.showChildren ? <Plus width='16px' height='16px' color='white' /> : <Minus width='16px' height='16px' color='white'/>}
                     </div>
                   </>
                   )
@@ -104,7 +110,7 @@ export default function RootNode({ defaultNode, allNodeRefs, reRenderLine, nodeC
                     className='absolute top-1/2 transform -translate-y-1/2 bg-sky-500 rounded-[16px] left-[-17px]'
                     onClick={e => handleIconClick(e, node.id)}
                   >
-                    <Plus width='16px' height='16px' color='white' />
+                      {node.showChildren ? <Plus width='16px' height='16px' color='white' /> : <Minus width='16px' height='16px' color='white'/>}
                   </div>
                   )
 
@@ -135,7 +141,7 @@ export default function RootNode({ defaultNode, allNodeRefs, reRenderLine, nodeC
                   className='absolute top-1/2 transform -translate-y-1/2 bg-sky-500 rounded-[16px] right-[-17px]'
                   onClick={e => handleIconClick(e, node.id)}
                 >
-                  <Plus width='16px' height='16px' color='white' />
+                  {node.showChildren ? <Plus width='16px' height='16px' color='white' /> : <Minus width='16px' height='16px' color='white'/>}
                 </div>
               )
             }

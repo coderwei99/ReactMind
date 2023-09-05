@@ -37,7 +37,7 @@ export function drawLine(ctx: CanvasRenderingContext2D, nodes: NodeType, nodesMa
         else
           drawBezier(ctx, parent_x_right, parent_y, child_x_left, child_y)
       }
-      drawLine(ctx, child, nodesMap)
+      child.showChildren && drawLine(ctx, child, nodesMap)
     })
   }
 }

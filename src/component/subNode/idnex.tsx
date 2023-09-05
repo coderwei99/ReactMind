@@ -46,10 +46,10 @@ export default function SubNode({
       ></Node>
       <div>
         {
-          node.children.length > 0 && node.children.map((childrenNode) => {
+          node.showChildren && node.children.length > 0 && node.children.map((childrenNode) => {
             return (
               <SubNode
-              key={childrenNode.id}
+                key={childrenNode.id}
                 showBorderId={showBorderId}
                 setShowBorderId={setShowBorderId}
                 node={childrenNode}

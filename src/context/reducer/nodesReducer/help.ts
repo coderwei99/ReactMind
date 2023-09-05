@@ -97,3 +97,18 @@ export function removeNode(state: NodeType, targetId: string) {
     }
   })
 }
+
+// 隐藏显示某个节点的子节点
+export function hiddenNode(state: NodeType, targetId: string) {
+  state.children.forEach((node) => {
+    if (node.id === targetId) {
+      // 找到目标节点，从父节点的 children 数组中删除它 然后把这个元素返回出去 后续要把他插入到别的位置
+      node.showChildren = !node.showChildren
+      return state
+    }
+    else {
+      // 递归处理子节点
+      hiddenNode(node, targetId)
+    }
+  })
+}

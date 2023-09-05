@@ -1,6 +1,7 @@
 export interface NodeType {
   id: string
   text: string
+  showChildren: boolean
   children: NodeType[]
 }
 
@@ -14,27 +15,32 @@ export const defaultNode: defaultNodeType = [
       {
         id: '1-1',
         text: 'children1=> 1-1',
+        showChildren: true,
         children: [
           {
             id: '2-1',
             text: '201',
+            showChildren: true,
             children: [
               {
                 id: '3-1',
                 text: '3-1',
                 children: [],
+                showChildren: true,
               },
             ],
           },
           {
             id: '2-2',
             text: '202',
+            showChildren: true,
             children: [],
           },
         ],
       },
       {
         id: '1-2',
+        showChildren: true,
         text: '我是id为1-2的节点',
         children: [
         ],
@@ -42,26 +48,31 @@ export const defaultNode: defaultNodeType = [
       {
         id: '1-3',
         text: 'children3 => 1-3',
+        showChildren: true,
         children: [],
       },
       {
         id: '1-4',
         text: '我是id为1-4的节点',
+        showChildren: true,
         children: [],
       },
       {
         id: '1-5',
         text: 'children1-5',
+        showChildren: true,
         children: [],
       },
       {
         id: '1-6',
         text: 'children1-6',
+        showChildren: true,
         children: [],
       },
       {
         id: '1-7',
         text: 'children1-7',
+        showChildren: true,
         children: [],
       },
       // {
@@ -190,5 +201,6 @@ export const defaultNode: defaultNodeType = [
       //   children: [],
       // },
     ],
+    showChildren: true,
   },
 ]
