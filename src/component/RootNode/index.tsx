@@ -29,7 +29,7 @@ export default function RootNode({ defaultNode, allNodeRefs, reRenderLine, nodeC
   const nodeRightBoxRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    nodeContainerRef.current!.style.width = `${nodeleftBoxRef.current!.offsetWidth + nodeRightBoxRef.current!.offsetWidth + nodeCenterBoxRef.current!.offsetWidth + 600}px`
+    // nodeContainerRef.current!.style.width = `${nodeleftBoxRef.current!.offsetWidth + nodeRightBoxRef.current!.offsetWidth + nodeCenterBoxRef.current!.offsetWidth + 600}px`
   })
 
   // 处理icon的点击事件
